@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Dia a Dia - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS ESPECÍFICOS PARA PÁGINA NO DIA A DIA ===== */
+
+        /* Hero Section Específica */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: var(--background-white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 140, 47, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                /*url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><path d="M50,10 A40,40 0 1,1 50,90 A40,40 0 1,1 50,10 Z" fill="white"/></svg>') repeat;*/
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seção de Conteúdo Principal */
+        .content-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .content-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(34, 66, 137, 0.1);
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        /* Cabeçalhos dos Cards com Ícones */
+        .content-card h2 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .content-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-orange);
+            border-radius: 3px;
+        }
+
+        .content-card h2::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: white;
+            border-radius: 10px;
+        }
+
+        /* Ícones específicos para cada card */
+        .content-card:nth-child(1) h2::before {
+            content: '\f07a';
+            /* Ícone de carrinho */
+        }
+
+        .content-card:nth-child(2) h2::before {
+            content: '\f2e7';
+            /* Ícone de utensílios */
+        }
+
+        .content-card:nth-child(3) h2::before {
+            content: '\f1b9';
+            /* Ícone de carro */
+        }
+
+        .content-card p {
+            color: var(--text-light-gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h3 {
+            color: var(--primary-blue);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .content-card h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-card li {
+            padding: 0.7rem 0;
+            color: var(--text-light-gray);
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(34, 66, 137, 0.1);
+        }
+
+        .content-card li:last-child {
+            border-bottom: none;
+        }
+
+        .content-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* Seção de Exemplos Visuais */
+        .examples-section {
+            padding: 4rem 0;
+            background: var(--background-white);
+        }
+
+        .examples-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .examples-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .example-card {
+            background: var(--body-background);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(34, 66, 137, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(34, 66, 137, 0.12);
+        }
+
+        .example-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .example-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .example-card p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+        }
+
+        /* Seção de Citação */
+        .quote-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(34, 66, 137, 0.05), rgba(255, 140, 47, 0.05));
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            padding: 0 3rem;
+        }
+
+        .quote-section blockquote::before,
+        .quote-section blockquote::after {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent-orange);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-section blockquote::before {
+            content: '\f10d';
+            left: 0;
+            top: -10px;
+        }
+
+        .quote-section blockquote::after {
+            content: '\f10e';
+            right: 0;
+            bottom: -10px;
+        }
+
+        .quote-section p {
+            margin-top: 1.5rem;
+            color: var(--text-light-gray);
+            font-weight: 600;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 3rem 0;
+            }
+
+            .page-hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.3rem;
+                padding: 0 2rem;
+            }
+
+            .examples-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .content-card h2::before {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.2rem;
+                padding: 0 1.5rem;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html" class="active">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Matemática no Dia a Dia</h1>
+                <p>Descubra como a matemática está presente em situações cotidianas e como ela facilita nossa vida</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h2>Matemática no Supermercado</h2>
+                        <p>A matemática está presente em cada compra que fazemos. Desde calcular descontos até comparar
+                            preços por quantidade, estamos usando conceitos matemáticos constantemente para tomar
+                            decisões financeiras inteligentes.</p>
+
+                        <h3>Exemplos práticos:</h3>
+                        <ul>
+                            <li>Cálculo de porcentagem em descontos e promoções</li>
+                            <li>Comparação de preços por unidade ou peso</li>
+                            <li>Cálculo de troco e verificação de notas fiscais</li>
+                            <li>Orçamento familiar e controle de gastos</li>
+                            <li>Cálculo de juros em compras parceladas</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Matemática na Culinária</h2>
+                        <p>Receitas são basicamente problemas de proporção matemática. Ajustar quantidades, calcular
+                            tempos de cozimento e dividir porções são atividades matemáticas essenciais na cozinha.</p>
+
+                        <h3>Conceitos aplicados:</h3>
+                        <ul>
+                            <li>Proporções e razões para ajustar receitas</li>
+                            <li>Conversão de unidades (xícaras, colheres, gramas)</li>
+                            <li>Frações nas medidas de ingredientes</li>
+                            <li>Temperatura e tempo de cozimento</li>
+                            <li>Divisão de porções igualmente</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Matemática no Transporte</h2>
+                        <p>Calcular rotas, estimar tempo de viagem, consumo de combustível - tudo isso envolve
+                            matemática aplicada que usamos diariamente em nossos deslocamentos.</p>
+
+                        <h3>Aplicações:</h3>
+                        <ul>
+                            <li>Cálculo de distância, velocidade e tempo de viagem</li>
+                            <li>Consumo de combustível e custos de deslocamento</li>
+                            <li>Otimização de rotas usando geometria</li>
+                            <li>Leitura de mapas e coordenadas geográficas</li>
+                            <li>Cálculo de tarifas de transporte público</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="examples-section">
+            <div class="container">
+                <h2>Outras Situações do Cotidiano</h2>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <i class="fas fa-home icon"></i>
+                        <h3>Na Construção Civil</h3>
+                        <p>Cálculo de áreas, volumes, quantidade de materiais e orçamentos em reformas e construções.
+                        </p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-heartbeat icon"></i>
+                        <h3>Na Saúde</h3>
+                        <p>Cálculo de dosagem de medicamentos, IMC, pressão arterial e interpretação de exames.</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-calendar-alt icon"></i>
+                        <h3>No Planejamento</h3>
+                        <p>Organização de agenda, prazos, metas financeiras e planejamento de projetos pessoais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="container">
+                <blockquote>
+                    "A matemática não é apenas números e fórmulas abstratas. Ela está presente em cada aspecto da nossa
+                    vida cotidiana, desde as compras no mercado até o planejamento das nossas férias. Dominar a
+                    matemática é dominar a arte de viver de forma mais inteligente e eficiente."
+                </blockquote>
+                <p>— Equipe π Senática</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

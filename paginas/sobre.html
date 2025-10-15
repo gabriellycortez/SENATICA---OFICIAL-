@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - π Senática</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== VARIÁVEIS CSS PRINCIPAIS ===== */
+        :root {
+            /* Cores padrão */
+            --primary-blue: #224289;
+            --accent-orange: #FF8C2F;
+            --footer-blue: #1A3366;
+            --background-white: #FFFFFF;
+            --body-background: #F8F9FA;
+            --text-light-gray: #555555;
+            --font-primary: 'Poppins', sans-serif;
+            
+            /* Tamanhos de fonte */
+            --font-size-base: 16px;
+            --font-size-large: 1.25rem;
+            --font-size-xlarge: 1.5rem;
+            --line-height-normal: 1.6;
+            --line-height-loose: 1.8;
+        }
+
+        /* ===== ESTILOS GERAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--body-background);
+            color: var(--text-light-gray);
+            line-height: var(--line-height-normal);
+            font-size: var(--font-size-base);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--background-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-pi {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .main-nav a {
+            color: var(--background-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus {
+            color: var(--accent-orange);
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            outline: 2px solid var(--accent-orange);
+        }
+
+        .main-nav a.active {
+            background: rgba(255,255,255,0.2);
+            color: var(--accent-orange);
+        }
+
+        /* ===== ESTILOS ESPECÍFICOS PARA PÁGINA SOBRE ===== */
+
+        /* Hero Section da página Sobre */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: var(--background-white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-10px) translateX(10px);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seção de Conteúdo Principal */
+        .content-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .content-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(34, 66, 137, 0.1);
+            text-align: justify;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        .content-card h2 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-orange);
+            border-radius: 3px;
+        }
+
+        .content-card h2::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+
+        .content-card:nth-child(1) h2::before {
+            content: '\f0c0';
+            color: var(--primary-blue);
+        }
+
+        .content-card:nth-child(2) h2::before {
+            content: '\f0c0';
+            color: var(--accent-orange);
+        }
+
+        .content-card:nth-child(3) h2::before {
+            content: '\f085';
+            color: var(--primary-blue);
+        }
+
+        .content-card p {
+            color: var(--text-light-gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-card li {
+            padding: 0.7rem 0;
+            color: var(--text-light-gray);
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+        }
+
+        .content-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* Seção de Equipe Expandida - CORRIGIDA */
+        .team-section {
+            padding: 3rem 0;
+            background: var(--background-white);
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .team-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+
+        .team-card {
+            background: var(--body-background);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(34, 66, 137, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(34, 66, 137, 0.12);
+        }
+
+        /* CORREÇÃO DAS IMAGENS - PROPORÇÃO CORRETA */
+        .team-image-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent-orange);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+        }
+
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover .team-image {
+            transform: scale(1.05);
+        }
+
+        .team-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .team-card p {
+            color: var(--text-light-gray);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Seção de Citação */
+        .quote-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(34, 66, 137, 0.05), rgba(255, 140, 47, 0.05));
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            padding: 0 3rem;
+        }
+
+        .quote-section blockquote::before,
+        .quote-section blockquote::after {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent-orange);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-section blockquote::before {
+            content: '\f10d';
+            left: 0;
+            top: -10px;
+        }
+
+        .quote-section blockquote::after {
+            content: '\f10e';
+            right: 0;
+            bottom: -10px;
+        }
+
+        .quote-section p {
+            margin-top: 1.5rem;
+            color: var(--text-light-gray);
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        .main-footer {
+            background: linear-gradient(135deg, var(--footer-blue), var(--primary-blue));
+            color: var(--background-white);
+            padding: 2.5rem 0;
+            text-align: center;
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            color: var(--background-white);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 3rem 0;
+            }
+
+            .page-hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.3rem;
+                padding: 0 2rem;
+            }
+
+            .team-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .team-image-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.2rem;
+                padding: 0 1.5rem;
+            }
+
+            .team-image-container {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="sobre.html" class="active">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Sobre o Projeto</h1>
+                <p>Conheça mais sobre o π Senática e nossa missão de conectar a matemática com o mundo real</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h2>Nossa Missão</h2>
+                        <p>O π Senática tem como objetivo demonstrar a importância da matemática no cotidiano e na
+                            tecnologia, tornando o aprendizado mais acessível, divertido e interativo.</p>
+                        <p>Acreditamos que a matemática não deve ser vista como uma disciplina isolada, mas como uma
+                            ferramenta poderosa que está presente em tudo ao nosso redor - desde as tecnologias que
+                            usamos até as decisões que tomamos no dia a dia.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Nossa Equipe</h2>
+                        <p>Projeto desenvolvido por alunos do Senac para a Feira de Ciências 2025, sob orientação da
+                            professora de Informática Gabrielly Cortez e dos professores de matemática Suellem Nóbrega e Lucas Moura.
+                        </p>
+                        <p>Nossa equipe é composta por estudantes apaixonados por tecnologia e educação, que buscam
+                            criar experiências de aprendizado significativas e envolventes.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Tecnologias Utilizadas</h2>
+                        <ul>
+                            <li>HTML5 e CSS3 para estrutura e design responsivo</li>
+                            <li>JavaScript para interatividade e jogos educativos</li>
+                            <li>Font Awesome para ícones e elementos visuais</li>
+                            <li>Google Fonts para tipografia moderna e legível</li>
+                            <li>Animações CSS para criar experiências dinâmicas</li>
+                            <li>Design responsivo para acesso em qualquer dispositivo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <h2>Nossos Orientadores</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-image-container">
+                            <img src="../img/Gaby.JPG" alt="Gabrielly Cortez" class="team-image">
+                        </div>
+                        <h3>Gabrielly Cortez</h3>
+                        <p>Professora de Informática</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image-container">
+                            <img src="../img/Suellem.jpeg" alt="Suellem Nóbrega" class="team-image">
+                        </div>
+                        <h3>Suellem Nóbrega</h3>
+                        <p>Professora de Matemática</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image-container">
+                            <img src="../img/Lucas.jpeg" alt="Lucas Moura" class="team-image">
+                        </div>
+                        <h3>Lucas Moura</h3>
+                        <p>Professor de Matemática</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="container">
+                <blockquote>
+                    "A matemática fornece a base lógica, a informática a ferramenta para simular e processar dados, e a educação integra ambas para formar pensadores críticos e inovadores no cenário tecnológico."
+                </blockquote>
+                <p>— Equipe π Senática</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos e professores do Senac Natal Zona Norte - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

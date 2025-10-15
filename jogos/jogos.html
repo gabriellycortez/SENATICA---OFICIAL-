@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS ESPECÍFICOS PARA PÁGINA JOGOS ===== */
+
+        /* Hero Section Específica para Jogos */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: var(--background-white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 140, 47, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                /*url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><polygon points="50,5 60,40 95,40 65,60 75,95 50,75 25,95 35,60 5,40 40,40" fill="white"/></svg>') repeat;
+            animation: float 20s infinite linear;*/
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-10px) translateX(10px);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seção de Jogos */
+        .games-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+            min-height: 60vh;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .game-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(34, 66, 137, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        /* Ícones dos Jogos */
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(34, 66, 137, 0.2);
+        }
+
+        .game-card:hover .game-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent-orange), #ff6b2f);
+        }
+
+        /* Títulos dos Jogos */
+        .game-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .game-card p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        /* Botões dos Jogos */
+        .btn-game {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-orange), #ff6b2f);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 140, 47, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-game::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-game:hover {
+            background: linear-gradient(135deg, #e67e22, #ff5722);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 140, 47, 0.4);
+        }
+
+        .btn-game:hover::before {
+            left: 100%;
+        }
+
+        /* Estilo para jogos em breve */
+        .game-card:has(a[href="#"]) {
+            opacity: 0.8;
+        }
+
+        .game-card:has(a[href="#"]) .btn-game {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .game-card:has(a[href="#"]) .btn-game:hover {
+            background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+            transform: none;
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        /* Badge "Em Breve" */
+        .game-card:has(a[href="#"])::after {
+            content: 'Em Breve';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--accent-orange);
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(255, 140, 47, 0.3);
+        }
+
+        /* Seção de Destaque */
+        .featured-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(34, 66, 137, 0.05), rgba(255, 140, 47, 0.05));
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .featured-content {
+            padding: 2rem;
+        }
+
+        .featured-content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-content p {
+            color: var(--text-light-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light-gray);
+        }
+
+        .featured-visual {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .featured-visual .icon {
+            font-size: 8rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.7;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 3rem 0;
+            }
+
+            .page-hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .game-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-visual .icon {
+                font-size: 6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .game-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .game-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.7rem;
+            }
+
+            .game-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .featured-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-visual .icon {
+                font-size: 5rem;
+            }
+        }
+
+        /* Animações Especiais */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .game-card:nth-child(1):hover {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .game-card:nth-child(2):hover {
+            animation: pulse 0.5s ease-in-out 0.1s;
+        }
+
+        .game-card:nth-child(3):hover {
+            animation: pulse 0.5s ease-in-out 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../paginas/dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="jogos.html" class="active">Jogos</a></li>
+                    <li><a href="../paginas/matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="../paginas/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Jogos Matemáticos</h1>
+                <p>Desafie seus conhecimentos e divirta-se aprendendo matemática de forma interativa!</p>
+            </div>
+        </section>
+
+        <section class="games-section">
+            <div class="container">
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <h3>Jogo da Velha</h3>
+                        <p>Desafie um amigo neste clássico jogo de estratégia 3x3 que desenvolve o raciocínio lógico e a
+                            antecipação de jogadas.</p>
+                        <a href="jogo-da-velha.html" class="btn-game">Jogar Agora</a>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Descubra o Número</h3>
+                        <p>Use a lógica e estratégia para encontrar o número secreto entre 1 e 100 com o menor número de
+                            tentativas possível.</p>
+                        <a href="descubra-numero.html" class="btn-game">Jogar Agora</a>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Cálculo Rápido</h3>
+                        <p>Teste sua velocidade em resolver problemas matemáticos contra o relógio e melhore suas
+                            habilidades de cálculo mental.</p>
+                        <a href="calculo-rapido.html" class="btn-game">Jogar Agora</a>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-shapes"></i>
+                        </div>
+                        <h3>Quebra-cabeça Geométrico</h3>
+                        <p>Monte figuras geométricas complexas e descubra propriedades fascinantes das formas enquanto
+                            se diverte.</p>
+                        <a href="#" class="btn-game">Em Breve</a>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>Desafio Lógico</h3>
+                        <p>Resolva problemas de lógica matemática que desafiam seu raciocínio e capacidade de resolver
+                            problemas complexos.</p>
+                        <a href="#" class="btn-game">Em Breve</a>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-dice"></i>
+                        </div>
+                        <h3>Probabilidade em Ação</h3>
+                        <p>Aprenda probabilidade de forma prática através de jogos de azar controlados e simulações
+                            interativas.</p>
+                        <a href="#" class="btn-game">Em Breve</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="container">
+                <div class="featured-grid">
+                    <div class="featured-content">
+                        <h2>Aprenda Matemática se Divertindo</h2>
+                        <p>Nossos jogos foram desenvolvidos para transformar conceitos matemáticos complexos em
+                            experiências divertidas e envolventes. Cada jogo foi cuidadosamente projetado para
+                            desenvolver habilidades específicas enquanto você se diverte.</p>
+
+                        <div class="featured-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">6+</span>
+                                <span class="stat-label">Jogos Disponíveis</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Níveis de Dificuldade</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Gratuito</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-visual">
+                        <i class="fas fa-gamepad icon"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

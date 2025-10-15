@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática na TI - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS ESPECÍFICOS PARA PÁGINA MATEMÁTICA NA TI ===== */
+
+        /* Hero Section Específica */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: var(--background-white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 140, 47, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                /*url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><path d="M50,5 L60,40 L95,40 L65,60 L75,95 L50,75 L25,95 L35,60 L5,40 L40,40 Z" fill="white"/></svg>') repeat;*/
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seção de Conteúdo Principal - Layout Específico */
+        .content-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .content-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(34, 66, 137, 0.1);
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        /* Cabeçalhos dos Cards com Ícones */
+        .content-card h2 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .content-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-orange);
+            border-radius: 3px;
+        }
+
+        .content-card h2::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: white;
+            border-radius: 10px;
+        }
+
+        /* Ícones específicos para cada card */
+        .content-card:nth-child(1) h2::before {
+            content: '\f0e8';
+            /* Ícone de fluxo */
+        }
+
+        .content-card:nth-child(2) h2::before {
+            content: '\f023';
+            /* Ícone de cadeado */
+        }
+
+        .content-card:nth-child(3) h2::before {
+            content: '\f085';
+            /* Ícone de engrenagem */
+        }
+
+        .content-card p {
+            color: var(--text-light-gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h3 {
+            color: var(--primary-blue);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .content-card h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-card li {
+            padding: 0.7rem 0;
+            color: var(--text-light-gray);
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(34, 66, 137, 0.1);
+        }
+
+        .content-card li:last-child {
+            border-bottom: none;
+        }
+
+        .content-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* Seção de Exemplos Interativos */
+        .examples-section {
+            padding: 4rem 0;
+            background: var(--background-white);
+        }
+
+        .examples-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .examples-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .example-card {
+            background: var(--body-background);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(34, 66, 137, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(34, 66, 137, 0.12);
+        }
+
+        .example-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .example-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .example-card p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+        }
+
+        /* Seção de Citação */
+        .quote-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(34, 66, 137, 0.05), rgba(255, 140, 47, 0.05));
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            padding: 0 3rem;
+        }
+
+        .quote-section blockquote::before,
+        .quote-section blockquote::after {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent-orange);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-section blockquote::before {
+            content: '\f10d';
+            left: 0;
+            top: -10px;
+        }
+
+        .quote-section blockquote::after {
+            content: '\f10e';
+            right: 0;
+            bottom: -10px;
+        }
+
+        .quote-section p {
+            margin-top: 1.5rem;
+            color: var(--text-light-gray);
+            font-weight: 600;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 3rem 0;
+            }
+
+            .page-hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.3rem;
+                padding: 0 2rem;
+            }
+
+            .examples-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .content-card h2::before {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.2rem;
+                padding: 0 1.5rem;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html" class="active">Matemática na TI</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Matemática na Tecnologia da Informação</h1>
+                <p>Descubra como a matemática é fundamental para a computação e desenvolvimento de software</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h2>Lógica Booleana</h2>
+                        <p>A base de toda a programação e circuitos digitais. Desenvolvida por George Boole no século
+                            XIX, a lógica booleana usa operadores como AND, OR e NOT para criar condições e tomar
+                            decisões em sistemas computacionais.</p>
+
+                        <h3>Aplicações Práticas:</h3>
+                        <ul>
+                            <li>Condicionais em programação (if/else)</li>
+                            <li>Circuitos digitais e portas lógicas</li>
+                            <li>Bancos de dados (consultas SQL com WHERE)</li>
+                            <li>Buscas na internet (operadores de busca)</li>
+                            <li>Design de interfaces (estados de botões)</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Criptografia</h2>
+                        <p>A matemática é essencial para proteger informações na era digital. Algoritmos criptográficos
+                            usam teoria dos números, álgebra e probabilidade para garantir a segurança e privacidade dos
+                            dados.</p>
+
+                        <h3>Conceitos Matemáticos Aplicados:</h3>
+                        <ul>
+                            <li>Números primos e fatoração (RSA)</li>
+                            <li>Álgebra modular (criptografia de chave pública)</li>
+                            <li>Funções de hash (SHA, MD5)</li>
+                            <li>Teoria da informação (entropia)</li>
+                            <li>Curvas elípticas (criptografia moderna)</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Algoritmos e Complexidade</h2>
+                        <p>A matemática ajuda a medir e otimizar a eficiência dos algoritmos. A notação Big O permite
+                            comparar diferentes abordagens e escolher a mais eficiente para resolver problemas
+                            computacionais.</p>
+
+                        <h3>Tipos de Complexidade:</h3>
+                        <ul>
+                            <li>O(1) - Tempo constante (acesso a array)</li>
+                            <li>O(log n) - Tempo logarítmico (busca binária)</li>
+                            <li>O(n) - Tempo linear (busca sequencial)</li>
+                            <li>O(n²) - Tempo quadrático (algoritmos de ordenação simples)</li>
+                            <li>O(2^n) - Tempo exponencial (problemas NP-completos)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="examples-section">
+            <div class="container">
+                <h2>Outras Aplicações da Matemática na TI</h2>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <i class="fas fa-chart-line icon"></i>
+                        <h3>Estatística e Machine Learning</h3>
+                        <p>Probabilidade, regressão e análise estatística são fundamentais para algoritmos de
+                            inteligência artificial e aprendizado de máquina.</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-vector-square icon"></i>
+                        <h3>Geometria Computacional</h3>
+                        <p>Usada em gráficos 3D, jogos, realidade virtual e sistemas de informação geográfica para
+                            representar e manipular formas espaciais.</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-network-wired icon"></i>
+                        <h3>Teoria dos Grafos</h3>
+                        <p>Aplicações em redes sociais, roteamento de internet, otimização de rotas e organização de
+                            dados interconectados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="container">
+                <blockquote>
+                    "A matemática é a linguagem com a qual Deus escreveu o universo. Na computação, ela se torna a
+                    ferramenta que nos permite traduzir essa linguagem em soluções práticas."
+                </blockquote>
+                <p>— Adaptado de Galileu Galilei</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

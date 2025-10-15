@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linha do Tempo - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS PARA LINHA DO TEMPO ===== */
+        .timeline-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-blue), var(--accent-orange));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-date {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            padding: 0 2rem;
+        }
+
+        .timeline-content {
+            flex: 2;
+            background: var(--background-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(34, 66, 137, 0.1);
+            position: relative;
+            max-width: 500px;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+        }
+
+        .timeline-content h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-icon {
+            font-size: 2rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+                align-items: flex-start;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-date {
+                flex: 0 0 80px;
+                text-align: left;
+                padding: 0;
+                font-size: 1rem;
+            }
+
+            .timeline-content {
+                flex: 1;
+                margin-left: 2rem;
+            }
+
+            .timeline-content::before {
+                left: -30px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="linha-tempo.html" class="active">Linha do Tempo</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Linha do Tempo Matemática</h1>
+                <p>Uma jornada pelas descobertas que moldaram o mundo</p>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="container">
+                <div class="timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 3000 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-hierarchy"></i>
+                            </div>
+                            <h2>Sistemas Numéricos Antigos</h2>
+                            <p>Egípcios e babilônios desenvolvem os primeiros sistemas numéricos para comércio e astronomia, usando símbolos para representar quantidades.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 600 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <h2>Escola Pitagórica</h2>
+                            <p>Pitágoras e seus seguidores estabelecem fundamentos da matemática como disciplina teórica, desenvolvendo teoremas e relações numéricas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 300 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <h2>Os Elementos de Euclides</h2>
+                            <p>Euclides compila o conhecimento matemático grego em "Os Elementos", estabelecendo a base da geometria por mais de 2000 anos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 250 d.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-dice"></i>
+                            </div>
+                            <h2>O Número Zero</h2>
+                            <p>Civilizações mesoamericanas e indianas desenvolvem o conceito do zero como número, revolucionando a aritmética e notação posicional.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">século XVII</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-infinity"></i>
+                            </div>
+                            <h2>Descoberta do Cálculo</h2>
+                            <p>Newton e Leibniz desenvolvem independentemente o cálculo diferencial e integral, fundamentais para física e engenharia modernas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">século XIX</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <h2>Revoluções na Geometria</h2>
+                            <p>Descoberta de geometrias não-euclidianas por Gauss, Bolyai e Lobachevsky, expandindo os conceitos de espaço e dimensão.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">século XX</div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h2>Teoria da Computação</h2>
+                            <p>Alan Turing e outros estabelecem os fundamentos matemáticos da ciência da computação e inteligência artificial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

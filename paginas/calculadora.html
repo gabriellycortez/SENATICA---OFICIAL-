@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS PARA CALCULADORAS ===== */
+        .calculators-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .calculator-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .calculator-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        .calculator-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .calculator-card h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .calculator-card p {
+            color: var(--text-light-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .input-group input,
+        .input-group select {
+            padding: 0.8rem;
+            border: 2px solid rgba(34, 66, 137, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .calculator-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .calculator-buttons button {
+            flex: 1;
+        }
+
+        .calculator-btn {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calculator-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .equation-display {
+            text-align: center;
+            padding: 1rem;
+            background: var(--body-background);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .calculator-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--body-background);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .calculator-result h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .calculator-result p {
+            margin: 0;
+            color: var(--text-light-gray);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .calculators-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-card {
+                padding: 2rem;
+            }
+            
+            .calculator-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="calculadoras.html" class="active">Calculadoras</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Calculadoras Interativas</h1>
+                <p>Ferramentas práticas para resolver problemas matemáticos</p>
+            </div>
+        </section>
+
+        <section class="calculators-section">
+            <div class="container">
+                <div class="calculators-grid">
+                    <!-- Calculadora de Juros -->
+                    <div class="calculator-card">
+                        <div class="calculator-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h2>Calculadora de Juros</h2>
+                        <p>Calcule juros simples e compostos para investimentos e empréstimos.</p>
+                        <div class="calculator-form">
+                            <div class="input-group">
+                                <label>Capital Inicial (R$):</label>
+                                <input type="number" id="capital" placeholder="1000">
+                            </div>
+                            <div class="input-group">
+                                <label>Taxa de Juros (% ao mês):</label>
+                                <input type="number" id="taxa" placeholder="5">
+                            </div>
+                            <div class="input-group">
+                                <label>Período (meses):</label>
+                                <input type="number" id="periodo" placeholder="12">
+                            </div>
+                            <div class="calculator-buttons">
+                                <button class="calculator-btn" onclick="calcularJurosSimples()">Juros Simples</button>
+                                <button class="calculator-btn" onclick="calcularJurosCompostos()">Juros Compostos</button>
+                            </div>
+                            <div class="calculator-result">
+                                <h3>Resultado:</h3>
+                                <p id="resultado-juros">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculadora de Áreas -->
+                    <div class="calculator-card">
+                        <div class="calculator-icon">
+                            <i class="fas fa-shapes"></i>
+                        </div>
+                        <h2>Calculadora de Áreas</h2>
+                        <p>Calcule áreas de figuras geométricas planas.</p>
+                        <div class="calculator-form">
+                            <div class="input-group">
+                                <label>Selecione a figura:</label>
+                                <select id="figura">
+                                    <option value="quadrado">Quadrado</option>
+                                    <option value="retangulo">Retângulo</option>
+                                    <option value="triangulo">Triângulo</option>
+                                    <option value="circulo">Círculo</option>
+                                </select>
+                            </div>
+                            <div class="input-group" id="campo1">
+                                <label>Lado (cm):</label>
+                                <input type="number" id="valor1" placeholder="10">
+                            </div>
+                            <div class="input-group" id="campo2" style="display: none;">
+                                <label>Altura (cm):</label>
+                                <input type="number" id="valor2" placeholder="5">
+                            </div>
+                            <button class="calculator-btn" onclick="calcularArea()">Calcular Área</button>
+                            <div class="calculator-result">
+                                <h3>Área:</h3>
+                                <p id="resultado-area">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculadora de Equações -->
+                    <div class="calculator-card">
+                        <div class="calculator-icon">
+                            <i class="fas fa-superscript"></i>
+                        </div>
+                        <h2>Equação do 2º Grau</h2>
+                        <p>Resolva equações quadráticas e encontre as raízes.</p>
+                        <div class="calculator-form">
+                            <div class="equation-display">
+                                <span>ax² + bx + c = 0</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Valor de a:</label>
+                                <input type="number" id="a" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Valor de b:</label>
+                                <input type="number" id="b" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Valor de c:</label>
+                                <input type="number" id="c" placeholder="0">
+                            </div>
+                            <button class="calculator-btn" onclick="calcularEquacao()">Resolver Equação</button>
+                            <div class="calculator-result">
+                                <h3>Solução:</h3>
+                                <p id="resultado-equacao">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Calculadora de Juros
+        function calcularJurosSimples() {
+            const capital = parseFloat(document.getElementById('capital').value);
+            const taxa = parseFloat(document.getElementById('taxa').value);
+            const periodo = parseInt(document.getElementById('periodo').value);
+
+            const juros = capital * (taxa / 100) * periodo;
+            const montante = capital + juros;
+
+            document.getElementById('resultado-juros').innerHTML = 
+                `Juros: R$ ${juros.toFixed(2)}<br>Montante: R$ ${montante.toFixed(2)}`;
+        }
+
+        function calcularJurosCompostos() {
+            const capital = parseFloat(document.getElementById('capital').value);
+            const taxa = parseFloat(document.getElementById('taxa').value);
+            const periodo = parseInt(document.getElementById('periodo').value);
+
+            const montante = capital * Math.pow(1 + (taxa / 100), periodo);
+            const juros = montante - capital;
+
+            document.getElementById('resultado-juros').innerHTML = 
+                `Juros: R$ ${juros.toFixed(2)}<br>Montante: R$ ${montante.toFixed(2)}`;
+        }
+
+        // Calculadora de Áreas
+        document.getElementById('figura').addEventListener('change', function() {
+            const figura = this.value;
+            const campo2 = document.getElementById('campo2');
+
+            if (figura === 'quadrado' || figura === 'circulo') {
+                campo2.style.display = 'none';
+                document.getElementById('campo1').querySelector('label').textContent = 
+                    figura === 'quadrado' ? 'Lado (cm):' : 'Raio (cm):';
+            } else {
+                campo2.style.display = 'block';
+                document.getElementById('campo1').querySelector('label').textContent = 'Base (cm):';
+                document.getElementById('campo2').querySelector('label').textContent = 
+                    figura === 'retangulo' ? 'Altura (cm):' : 'Altura (cm):';
+            }
+        });
+
+        function calcularArea() {
+            const figura = document.getElementById('figura').value;
+            const valor1 = parseFloat(document.getElementById('valor1').value);
+            const valor2 = parseFloat(document.getElementById('valor2').value);
+            let area = 0;
+
+            switch(figura) {
+                case 'quadrado':
+                    area = valor1 * valor1;
+                    break;
+                case 'retangulo':
+                    area = valor1 * valor2;
+                    break;
+                case 'triangulo':
+                    area = (valor1 * valor2) / 2;
+                    break;
+                case 'circulo':
+                    area = Math.PI * valor1 * valor1;
+                    break;
+            }
+
+            document.getElementById('resultado-area').textContent = `${area.toFixed(2)} cm²`;
+        }
+
+        // Calculadora de Equações
+        function calcularEquacao() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+
+            if (a === 0) {
+                document.getElementById('resultado-equacao').textContent = 'Não é uma equação do 2º grau!';
+                return;
+            }
+
+            const delta = b * b - 4 * a * c;
+
+            if (delta < 0) {
+                document.getElementById('resultado-equacao').textContent = 'Não existem raízes reais.';
+            } else if (delta === 0) {
+                const x = -b / (2 * a);
+                document.getElementById('resultado-equacao').textContent = `Raiz única: x = ${x.toFixed(2)}`;
+            } else {
+                const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                document.getElementById('resultado-equacao').textContent = 
+                    `x₁ = ${x1.toFixed(2)}, x₂ = ${x2.toFixed(2)}`;
+            }
+        }
+    </script>
+</body>
+</html>

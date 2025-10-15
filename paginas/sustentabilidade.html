@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática e Sustentabilidade - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS PARA MATEMÁTICA E SUSTENTABILIDADE ===== */
+        .sustainability-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .sustainability-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .sustainability-intro h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sustainability-intro p {
+            color: var(--text-light-gray);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .sustainability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .sustainability-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sustainability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .sustainability-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        .sustainability-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .sustainability-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .sustainability-card p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .sustainability-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background: var(--body-background);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light-gray);
+        }
+
+        /* Seção de Casos Práticos */
+        .case-studies {
+            padding: 4rem 0;
+            background: var(--background-white);
+        }
+
+        .case-studies h2 {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .case-card {
+            background: var(--body-background);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(34, 66, 137, 0.1);
+        }
+
+        .case-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .case-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .case-card p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+        }
+
+        /* Seção de Calculadora de Pegada Ecológica */
+        .footprint-calculator {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(34, 66, 137, 0.05), rgba(255, 140, 47, 0.05));
+        }
+
+        .calculator-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--background-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.1);
+        }
+
+        .calculator-container h2 {
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .input-group input,
+        .input-group select {
+            padding: 0.8rem;
+            border: 2px solid rgba(34, 66, 137, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .calculator-btn {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .calculator-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .calculator-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--body-background);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .calculator-result h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-result p {
+            color: var(--text-light-gray);
+            margin: 0;
+        }
+
+        /* Seção de Ação */
+        .action-section {
+            padding: 4rem 0;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+        }
+
+        .action-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .action-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--accent-orange);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .action-btn.secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .sustainability-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sustainability-stats {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="sustentabilidade.html" class="active">Sustentabilidade</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Matemática e Sustentabilidade</h1>
+                <p>Como os números podem ajudar a construir um futuro mais sustentável</p>
+            </div>
+        </section>
+
+        <section class="sustainability-section">
+            <div class="container">
+                <div class="sustainability-intro">
+                    <h2>A Matemática do Planeta</h2>
+                    <p>A matemática é uma ferramenta poderosa para entender e resolver os desafios ambientais que enfrentamos. Através de modelos matemáticos, estatísticas e análises de dados, podemos tomar decisões mais informadas para um futuro sustentável.</p>
+                </div>
+
+                <div class="sustainability-grid">
+                    <!-- Card 1 -->
+                    <div class="sustainability-card">
+                        <div class="sustainability-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Pegada Ecológica</h3>
+                        <p>A matemática nos permite calcular o impacto ambiental de indivíduos, comunidades e nações. A pegada ecológica mede a quantidade de recursos naturais que consumimos versus a capacidade do planeta de regenerá-los.</p>
+                        
+                        <div class="sustainability-stats">
+                            <div class="stat">
+                                <span class="stat-number">1.7</span>
+                                <span class="stat-label">Planetas Terra</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">60%</span>
+                                <span class="stat-label">Acima da capacidade</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="sustainability-card">
+                        <div class="sustainability-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Estatísticas Ambientais</h3>
+                        <p>Análises estatísticas nos ajudam a compreender tendências ambientais, como mudanças climáticas, poluição e perda de biodiversidade. Esses dados são essenciais para políticas públicas eficazes.</p>
+                        
+                        <div class="sustainability-stats">
+                            <div class="stat">
+                                <span class="stat-number">+1.1°C</span>
+                                <span class="stat-label">Aquecimento global</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">8 mi</span>
+                                <span class="stat-label">Ton. plástico/ano</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="sustainability-card">
+                        <div class="sustainability-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Otimização de Recursos</h3>
+                        <p>Algoritmos matemáticos são usados para otimizar o uso de recursos naturais, reduzir desperdícios e melhorar a eficiência em processos industriais e agrícolas.</p>
+                        
+                        <div class="sustainability-stats">
+                            <div class="stat">
+                                <span class="stat-number">30%</span>
+                                <span class="stat-label">Redução de água</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">25%</span>
+                                <span class="stat-label">Menos energia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="sustainability-card">
+                        <div class="sustainability-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <h3>Energias Renováveis</h3>
+                        <p>Cálculos matemáticos são fundamentais para projetar sistemas de energia renovável, prever produção e otimizar o armazenamento de energia solar, eólica e outras fontes limpas.</p>
+                        
+                        <div class="sustainability-stats">
+                            <div class="stat">
+                                <span class="stat-number">80%</span>
+                                <span class="stat-label">Crescimento solar</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">29%</span>
+                                <span class="stat-label">Energia renovável</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-studies">
+            <div class="container">
+                <h2>Casos Práticos de Aplicação</h2>
+                <div class="case-grid">
+                    <div class="case-card">
+                        <i class="fas fa-tint icon"></i>
+                        <h3>Gestão de Recursos Hídricos</h3>
+                        <p>Modelos matemáticos preveem demandas futuras de água e otimizam a distribuição em áreas urbanas e rurais, reduzindo desperdícios.</p>
+                    </div>
+                    <div class="case-card">
+                        <i class="fas fa-seedling icon"></i>
+                        <h3>Agricultura Sustentável</h3>
+                        <p>Algoritmos determinam a quantidade ideal de fertilizantes e água para maximizar a produção enquanto minimizam impactos ambientais.</p>
+                    </div>
+                    <div class="case-card">
+                        <i class="fas fa-city icon"></i>
+                        <h3>Cidades Inteligentes</h3>
+                        <p>Matemática aplicada no planejamento urbano para otimizar transporte, energia e gestão de resíduos em centros urbanos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footprint-calculator">
+            <div class="container">
+                <div class="calculator-container">
+                    <h2>Calculadora de Pegada Ecológica</h2>
+                    <div class="calculator-form">
+                        <div class="input-group">
+                            <label>Consumo de Energia Mensal (kWh):</label>
+                            <input type="number" id="energy" placeholder="Ex: 300">
+                        </div>
+                        <div class="input-group">
+                            <label>Transporte Semanal (km):</label>
+                            <input type="number" id="transport" placeholder="Ex: 150">
+                        </div>
+                        <div class="input-group">
+                            <label>Consumo de Carne (vezes/semana):</label>
+                            <select id="meat">
+                                <option value="0">Nenhuma</option>
+                                <option value="1">1-2 vezes</option>
+                                <option value="2">3-4 vezes</option>
+                                <option value="3">5+ vezes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Reciclagem:</label>
+                            <select id="recycling">
+                                <option value="0">Não reciclo</option>
+                                <option value="1">Reciclo parcialmente</option>
+                                <option value="2">Reciclo a maioria</option>
+                            </select>
+                        </div>
+                        <button class="calculator-btn" onclick="calculateFootprint()">Calcular Minha Pegada</button>
+                        
+                        <div class="calculator-result" id="result" style="display: none;">
+                            <h3>Resultado da Sua Pegada Ecológica</h3>
+                            <p id="result-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Calculadora de Pegada Ecológica
+        function calculateFootprint() {
+            const energy = parseFloat(document.getElementById('energy').value) || 0;
+            const transport = parseFloat(document.getElementById('transport').value) || 0;
+            const meat = parseInt(document.getElementById('meat').value);
+            const recycling = parseInt(document.getElementById('recycling').value);
+            
+            // Cálculo simplificado da pegada ecológica
+            let footprint = 0;
+            
+            // Energia (0.5 pontos por 100 kWh)
+            footprint += (energy / 100) * 0.5;
+            
+            // Transporte (0.3 pontos por 100 km)
+            footprint += (transport / 100) * 0.3;
+            
+            // Consumo de carne
+            footprint += meat * 0.4;
+            
+            // Reciclagem (reduz a pegada)
+            footprint -= recycling * 0.2;
+            
+            // Garantir que a pegada não seja negativa
+            footprint = Math.max(0.5, footprint);
+            
+            // Classificar a pegada
+            let classification, message, color;
+            
+            if (footprint < 1.5) {
+                classification = "Baixa";
+                message = "Parabéns! Sua pegada ecológica está abaixo da média. Continue com suas práticas sustentáveis!";
+                color = "#2ecc71";
+            } else if (footprint < 2.5) {
+                classification = "Média";
+                message = "Sua pegada está na média. Há espaço para melhorias, especialmente no consumo de energia e transporte.";
+                color = "#f39c12";
+            } else {
+                classification = "Alta";
+                message = "Sua pegada ecológica está acima do ideal. Considere reduzir consumo de energia, usar transporte sustentável e diminuir o consumo de carne.";
+                color = "#e74c3c";
+            }
+            
+            // Exibir resultado
+            const resultElement = document.getElementById('result');
+            const resultText = document.getElementById('result-text');
+            
+            resultText.innerHTML = `
+                <strong>Classificação: ${classification}</strong><br>
+                Pontuação: ${footprint.toFixed(2)}<br><br>
+                ${message}
+            `;
+            
+            resultElement.style.display = 'block';
+            resultElement.style.borderLeftColor = color;
+        }
+    </script>
+</body>
+</html>

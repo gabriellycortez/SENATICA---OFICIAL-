@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biografias - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS PARA PÁGINA BIOGRAFIAS ===== */
+        .biographies-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .biography-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: var(--background-white);
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: var(--background-white);
+        }
+
+        .biography-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .biography-card {
+            background: var(--background-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .biography-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 66, 137, 0.15);
+        }
+
+        .biography-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .biography-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .biography-content h2 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .biography-era {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .biography-content p {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .biography-details h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .biography-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .biography-details li {
+            padding: 0.3rem 0;
+            color: var(--text-light-gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .biography-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .biography-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .biography-filters {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="biografias.html" class="active">Biografias</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Biografias de Matemáticos</h1>
+                <p>Conheça as mentes brilhantes que moldaram a matemática</p>
+            </div>
+        </section>
+
+        <section class="biographies-section">
+            <div class="container">
+                <div class="biography-filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="antiga">Antiguidade</button>
+                    <button class="filter-btn" data-filter="media">Idade Média</button>
+                    <button class="filter-btn" data-filter="moderna">Era Moderna</button>
+                    <button class="filter-btn" data-filter="contemporanea">Contemporânea</button>
+                </div>
+
+                <div class="biography-grid">
+                    <!-- Pitágoras -->
+                    <div class="biography-card" data-era="antiga">
+                        <div class="biography-image">
+                            <i class="fas fa-square-root-alt"></i>
+                        </div>
+                        <div class="biography-content">
+                            <h2>Pitágoras</h2>
+                            <span class="biography-era">Antiguidade</span>
+                            <p>Filósofo e matemático grego que fundou a escola pitagórica. Conhecido pelo Teorema de Pitágoras que relaciona os lados de um triângulo retângulo.</p>
+                            <div class="biography-details">
+                                <h3>Contribuições:</h3>
+                                <ul>
+                                    <li>Teorema de Pitágoras</li>
+                                    <li>Números figurados</li>
+                                    <li>Relação entre música e matemática</li>
+                                    <li>Fundamentos da teoria dos números</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Isaac Newton -->
+                    <div class="biography-card" data-era="moderna">
+                        <div class="biography-image">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div class="biography-content">
+                            <h2>Isaac Newton</h2>
+                            <span class="biography-era">Era Moderna</span>
+                            <p>Físico, matemático e astrônomo inglês. Desenvolveu o cálculo, as leis do movimento e a lei da gravitação universal.</p>
+                            <div class="biography-details">
+                                <h3>Contribuições:</h3>
+                                <ul>
+                                    <li>Leis do movimento de Newton</li>
+                                    <li>Lei da gravitação universal</li>
+                                    <li>Desenvolvimento do cálculo</li>
+                                    <li>Teoria das cores</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ada Lovelace -->
+                    <div class="biography-card" data-era="moderna">
+                        <div class="biography-image">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="biography-content">
+                            <h2>Ada Lovelace</h2>
+                            <span class="biography-era">Era Moderna</span>
+                            <p>Matemática e escritora inglesa, conhecida por seu trabalho na máquina analítica de Charles Babbage. Considerada a primeira programadora.</p>
+                            <div class="biography-details">
+                                <h3>Contribuições:</h3>
+                                <ul>
+                                    <li>Primeiro algoritmo computacional</li>
+                                    <li>Visão sobre capacidades futuras dos computadores</li>
+                                    <li>Trabalho com a máquina analítica</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alan Turing -->
+                    <div class="biography-card" data-era="contemporanea">
+                        <div class="biography-image">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="biography-content">
+                            <h2>Alan Turing</h2>
+                            <span class="biography-era">Contemporânea</span>
+                            <p>Matemático, cientista da computação e criptoanalista. Contribuiu fundamentalmente para a ciência da computação e inteligência artificial.</p>
+                            <div class="biography-details">
+                                <h3>Contribuições:</h3>
+                                <ul>
+                                    <li>Máquina de Turing</li>
+                                    <li>Teste de Turing para IA</li>
+                                    <li>Criptoanálise na Segunda Guerra</li>
+                                    <li>Fundamentos da computação moderna</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filtros de biografias
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const biographyCards = document.querySelectorAll('.biography-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Ativa o botão clicado
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                biographyCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.era === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso - π Senática</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== VARIÁVEIS CSS PRINCIPAIS ===== */
+        :root {
+            --primary-blue: #224289;
+            --accent-orange: #FF8C2F;
+            --footer-blue: #1A3366;
+            --background-white: #FFFFFF;
+            --body-background: #F8F9FA;
+            --text-light-gray: #555555;
+            --font-primary: 'Poppins', sans-serif;
+        }
+
+        /* ===== ESTILOS GERAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--body-background);
+            color: var(--text-light-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--background-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-pi {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .main-nav a {
+            color: var(--background-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus {
+            color: var(--accent-orange);
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            outline: 2px solid var(--accent-orange);
+        }
+
+        .main-nav a.active {
+            background: rgba(255,255,255,0.2);
+            color: var(--accent-orange);
+        }
+
+        /* ===== CONTEÚDO DA PÁGINA ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: var(--background-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 4rem 0;
+            background: var(--body-background);
+        }
+
+        .terms-content {
+            background: var(--background-white);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .terms-content h2 {
+            color: var(--primary-blue);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 0.5rem;
+        }
+
+        .terms-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .terms-content p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .terms-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .terms-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .important-note {
+            background: rgba(255, 140, 47, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background: linear-gradient(135deg, var(--footer-blue), var(--primary-blue));
+            color: var(--background-white);
+            padding: 2.5rem 0;
+            text-align: center;
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .terms-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .terms-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="paginas/dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="jogos/jogos.html">Jogos</a></li>
+                    <li><a href="paginas/matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="paginas/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Termos de Uso</h1>
+                <p>Condições para utilização do nosso site educacional</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="terms-content">
+                    <div class="important-note">
+                        <p><strong>Nota Importante:</strong> Este é um projeto educacional desenvolvido para a Feira de Ciências 2025. Todo o conteúdo é fornecido gratuitamente para fins educacionais.</p>
+                    </div>
+
+                    <h2>1. Aceitação dos Termos</h2>
+                    <p>Ao acessar e utilizar o site π Senática, você concorda com estes Termos de Uso e com nossa Política de Privacidade.</p>
+
+                    <h2>2. Propriedade Intelectual</h2>
+                    <p>Todo o conteúdo disponível neste site, incluindo textos, imagens, gráficos, logos e código, é de propriedade do projeto π Senática ou de seus licenciadores, exceto quando indicado o contrário.</p>
+                    <p>Você pode:</p>
+                    <ul>
+                        <li>Utilizar o conteúdo para fins educacionais e pessoais</li>
+                        <li>Compartilhar o conteúdo com atribuição adequada</li>
+                        <li>Utilizar os jogos e ferramentas interativas para aprendizado</li>
+                    </ul>
+                    <p>Você não pode:</p>
+                    <ul>
+                        <li>Copiar, modificar ou distribuir o conteúdo para fins comerciais</li>
+                        <li>Utilizar o conteúdo de maneira que sugira endosso do π Senática a produtos ou serviços</li>
+                        <li>Remover avisos de direitos autorais ou propriedade intelectual</li>
+                    </ul>
+
+                    <h2>3. Conteúdo do Usuário</h2>
+                    <p>Nosso site não permite o envio de conteúdo por usuários, portanto não coletamos nem armazenamos materiais enviados por visitantes.</p>
+
+                    <h2>4. Links para Terceiros</h2>
+                    <p>O π Senática pode conter links para sites de terceiros. Não nos responsabilizamos pelo conteúdo, políticas de privacidade ou práticas desses sites.</p>
+
+                    <h2>5. Isenção de Responsabilidade</h2>
+                    <p>O conteúdo deste site é fornecido "como está" para fins educacionais. Embora nos esforcemos para garantir a precisão das informações, não garantimos a completude ou precisão do conteúdo.</p>
+                    <p>Não nos responsabilizamos por quaisquer danos diretos, indiretos ou consequenciais resultantes do uso ou incapacidade de uso deste site.</p>
+
+                    <h2>6. Jogos e Ferramentas Interativas</h2>
+                    <p>Os jogos e ferramentas interativas disponíveis no site são fornecidos para fins educacionais. Não coletamos dados de desempenho ou informações pessoais através dessas ferramentas.</p>
+
+                    <h2>7. Modificações nos Termos</h2>
+                    <p>Reservamo-nos o direito de modificar estes Termos de Uso a qualquer momento. As alterações entrarão em vigor imediatamente após sua publicação no site.</p>
+
+                    <h2>8. Lei Aplicável</h2>
+                    <p>Estes Termos de Uso são regidos pelas leis do Brasil. Qualquer disputa relacionada a estes termos será resolvida nos tribunais brasileiros.</p>
+
+                    <h2>9. Contato</h2>
+                    <p>Para questões relacionadas a estes Termos de Uso, entre em contato conosco através do e-mail: contato@pisenatica.com</p>
+
+                    <div class="important-note">
+                        <p><strong>Última atualização:</strong> 15 de Novembro de 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

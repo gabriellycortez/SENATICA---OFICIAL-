@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - π Senática</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== VARIÁVEIS CSS PRINCIPAIS ===== */
+        :root {
+            --primary-blue: #224289;
+            --accent-orange: #FF8C2F;
+            --footer-blue: #1A3366;
+            --background-white: #FFFFFF;
+            --body-background: #F8F9FA;
+            --text-light-gray: #555555;
+            --font-primary: 'Poppins', sans-serif;
+        }
+
+        /* ===== ESTILOS GERAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--body-background);
+            color: var(--text-light-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--background-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-pi {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .main-nav a {
+            color: var(--background-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus {
+            color: var(--accent-orange);
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            outline: 2px solid var(--accent-orange);
+        }
+
+        .main-nav a.active {
+            background: rgba(255,255,255,0.2);
+            color: var(--accent-orange);
+        }
+
+        /* ===== CONTEÚDO DA PÁGINA ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            color: var(--background-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 4rem 0;
+            background: var(--body-background);
+        }
+
+        .policy-content {
+            background: var(--background-white);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .policy-content h2 {
+            color: var(--primary-blue);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 0.5rem;
+        }
+
+        .policy-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .policy-content p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .policy-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .policy-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .last-updated {
+            background: rgba(34, 66, 137, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background: linear-gradient(135deg, var(--footer-blue), var(--primary-blue));
+            color: var(--background-white);
+            padding: 2.5rem 0;
+            text-align: center;
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .policy-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .policy-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="paginas/dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="jogos/jogos.html">Jogos</a></li>
+                    <li><a href="paginas/matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="paginas/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Política de Privacidade</h1>
+                <p>Saiba como protegemos suas informações em nosso site educacional</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="policy-content">
+                    <h2>1. Coleta de Informações</h2>
+                    <p>O π Senática é um site educacional desenvolvido para a Feira de Ciências 2025. Não coletamos dados pessoais dos visitantes, exceto quando estes são fornecidos voluntariamente através de formulários de contato ou newsletter.</p>
+
+                    <h2>2. Uso de Cookies</h2>
+                    <p>Nosso site utiliza apenas cookies essenciais para o funcionamento básico da plataforma. Não utilizamos cookies de rastreamento ou para fins de publicidade.</p>
+
+                    <h2>3. Dados de Navegação</h2>
+                    <p>Podemos coletar informações anônimas sobre a navegação no site (páginas visitadas, tempo de permanência) apenas para fins estatísticos e de melhoria da experiência do usuário.</p>
+
+                    <h2>4. Compartilhamento de Dados</h2>
+                    <p>Não compartilhamos, vendemos ou divulgamos qualquer informação dos usuários para terceiros, uma vez que nosso projeto é estritamente educacional.</p>
+
+                    <h2>5. Links Externos</h2>
+                    <p>Nosso site pode conter links para outros sites. Não nos responsabilizamos pelas práticas de privacidade ou conteúdo desses sites externos.</p>
+
+                    <h2>6. Segurança</h2>
+                    <p>Implementamos medidas de segurança para proteger as informações contra acesso não autorizado, alteração ou destruição.</p>
+
+                    <h2>7. Direitos do Usuário</h2>
+                    <p>Você tem o direito de:</p>
+                    <ul>
+                        <li>Solicitar informações sobre quais dados seus temos armazenados</li>
+                        <li>Solicitar a correção de dados incorretos</li>
+                        <li>Solicitar a exclusão de seus dados pessoais</li>
+                    </ul>
+
+                    <h2>8. Alterações na Política</h2>
+                    <p>Esta política de privacidade pode ser atualizada periodicamente. Recomendamos que os usuários revisitem esta página para se manterem informados sobre quaisquer mudanças.</p>
+
+                    <div class="last-updated">
+                        <p><strong>Última atualização:</strong> 15 de Novembro de 2025</p>
+                        <p><strong>Contato:</strong> Para dúvidas sobre esta política, entre em contato através do e-mail: contato@pisenatica.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

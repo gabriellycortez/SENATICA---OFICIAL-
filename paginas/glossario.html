@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossário - π Senática</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS PARA GLOSSÁRIO ===== */
+        .glossary-section {
+            padding: 5rem 0;
+            background: var(--body-background);
+        }
+
+        .glossary-search {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .glossary-search input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(34, 66, 137, 0.2);
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .glossary-search input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(255, 140, 47, 0.1);
+        }
+
+        .glossary-search i {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light-gray);
+        }
+
+        .glossary-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .glossary-filter {
+            background: var(--background-white);
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .glossary-filter:hover,
+        .glossary-filter.active {
+            background: var(--primary-blue);
+            color: var(--background-white);
+        }
+
+        .glossary-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .glossary-item {
+            background: var(--background-white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(34, 66, 137, 0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .glossary-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.12);
+        }
+
+        .glossary-term {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .glossary-category {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .glossary-definition {
+            color: var(--text-light-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .glossary-example {
+            background: var(--body-background);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-blue);
+        }
+
+        .glossary-example h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .glossary-example p {
+            margin: 0;
+            color: var(--text-light-gray);
+            font-style: italic;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light-gray);
+        }
+
+        @media (max-width: 768px) {
+            .glossary-filters {
+                gap: 0.5rem;
+            }
+            
+            .glossary-filter {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-pi">π Sen</span>ática
+                </a>
+            </h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dia-a-dia.html">No dia a dia</a></li>
+                    <li><a href="../jogos/jogos.html">Jogos</a></li>
+                    <li><a href="matematica-ti.html">Matemática na TI</a></li>
+                    <li><a href="glossario.html" class="active">Glossário</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Glossário Matemático</h1>
+                <p>Encontre definições e exemplos dos principais termos matemáticos</p>
+            </div>
+        </section>
+
+        <section class="glossary-section">
+            <div class="container">
+                <div class="glossary-search">
+                    <input type="text" id="searchInput" placeholder="Pesquisar termo matemático...">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="glossary-filters">
+                    <button class="glossary-filter active" data-filter="all">Todos</button>
+                    <button class="glossary-filter" data-filter="algebra">Álgebra</button>
+                    <button class="glossary-filter" data-filter="geometria">Geometria</button>
+                    <button class="glossary-filter" data-filter="aritmetica">Aritmética</button>
+                    <button class="glossary-filter" data-filter="calculo">Cálculo</button>
+                </div>
+
+                <div class="glossary-grid" id="glossaryGrid">
+                    <!-- Termo 1 -->
+                    <div class="glossary-item" data-category="algebra">
+                        <div class="glossary-term">
+                            <i class="fas fa-cube"></i>
+                            Variável
+                        </div>
+                        <span class="glossary-category">Álgebra</span>
+                        <p class="glossary-definition">
+                            Símbolo que representa um número desconhecido ou que pode assumir diferentes valores em uma expressão matemática.
+                        </p>
+                        <div class="glossary-example">
+                            <h4>Exemplo:</h4>
+                            <p>Na equação 2x + 3 = 11, "x" é a variável que representa o número desconhecido.</p>
+                        </div>
+                    </div>
+
+                    <!-- Termo 2 -->
+                    <div class="glossary-item" data-category="geometria">
+                        <div class="glossary-term">
+                            <i class="fas fa-shapes"></i>
+                            Triângulo Retângulo
+                        </div>
+                        <span class="glossary-category">Geometria</span>
+                        <p class="glossary-definition">
+                            Triângulo que possui um ângulo interno de 90 graus. O lado oposto ao ângulo reto é chamado de hipotenusa.
+                        </p>
+                        <div class="glossary-example">
+                            <h4>Exemplo:</h4>
+                            <p>No Teorema de Pitágoras: a² + b² = c², onde c é a hipotenusa e a, b são os catetos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Termo 3 -->
+                    <div class="glossary-item" data-category="aritmetica">
+                        <div class="glossary-term">
+                            <i class="fas fa-divide"></i>
+                            Mínimo Múltiplo Comum (MMC)
+                        </div>
+                        <span class="glossary-category">Aritmética</span>
+                        <p class="glossary-definition">
+                            Menor número positivo que é múltiplo comum de dois ou mais números.
+                        </p>
+                        <div class="glossary-example">
+                            <h4>Exemplo:</h4>
+                            <p>MMC de 4 e 6 é 12, pois 12 é o menor número divisível por ambos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Termo 4 -->
+                    <div class="glossary-item" data-category="calculo">
+                        <div class="glossary-term">
+                            <i class="fas fa-chart-line"></i>
+                            Derivada
+                        </div>
+                        <span class="glossary-category">Cálculo</span>
+                        <p class="glossary-definition">
+                            Mede a taxa de variação instantânea de uma função em relação à sua variável independente.
+                        </p>
+                        <div class="glossary-example">
+                            <h4>Exemplo:</h4>
+                            <p>A derivada de f(x) = x² é f'(x) = 2x, representando a inclinação da reta tangente em cada ponto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Termo 5 -->
+                    <div class="glossary-item" data-category="algebra">
+                        <div class="glossary-term">
+                            <i class="fas fa-function"></i>
+                            Função Quadrática
+                        </div>
+                        <span class="glossary-category">Álgebra</span>
+                        <p class="glossary-definition">
+                            Função polinomial de segundo grau, representada por f(x) = ax² + bx + c, onde a ≠ 0.
+                        </p>
+                        <div class="glossary-example">
+                            <h4>Exemplo:</h4>
+                            <p>f(x) = 2x² - 3x + 1 é uma função quadrática que forma uma parábola quando grafada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-text">
+            <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filtros e busca do glossário
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.glossary-filter');
+        const glossaryItems = document.querySelectorAll('.glossary-item');
+
+        // Filtro por categoria
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                filterGlossary(filter);
+            });
+        });
+
+        // Busca em tempo real
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            filterGlossary('all', searchTerm);
+        });
+
+        function filterGlossary(category, searchTerm = '') {
+            glossaryItems.forEach(item => {
+                const itemCategory = item.dataset.category;
+                const term = item.querySelector('.glossary-term').textContent.toLowerCase();
+                const definition = item.querySelector('.glossary-definition').textContent.toLowerCase();
+                
+                const matchesCategory = category === 'all' || itemCategory === category;
+                const matchesSearch = term.includes(searchTerm) || definition.includes(searchTerm);
+                
+                if (matchesCategory && matchesSearch) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
