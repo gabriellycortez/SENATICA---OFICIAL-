@@ -105,16 +105,23 @@
             color: var(--accent-orange);
         }
 
-        /* ===== ESTILOS ESPECÍFICOS PARA PÁGINA SOBRE ===== */
-
-        /* Hero Section da página Sobre */
+        /* ===== HERO SECTION ATUALIZADA ===== */
         .page-hero {
-            background: linear-gradient(135deg, var(--primary-blue), var(--footer-blue));
+            background: 
+                linear-gradient(135deg, 
+                    rgba(34, 66, 137, 0.95) 0%, 
+                    rgba(26, 51, 102, 0.92) 50%, 
+                    rgba(20, 40, 80, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M30,30 Q50,10 70,30 T90,50 T70,70 T50,90 T30,70 T10,50 T30,30 Z" fill="white"/></svg>') repeat,
+                radial-gradient(circle at 20% 80%, rgba(255, 140, 47, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
             color: var(--background-white);
-            padding: 4rem 0;
-            text-align: center;
+            padding: 6rem 0 4rem;
             position: relative;
             overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
         }
 
         .page-hero::before {
@@ -124,39 +131,117 @@
             left: 0;
             width: 100%;
             height: 100%;
-            animation: float 20s infinite linear;
+            background: 
+                linear-gradient(45deg, transparent 65%, rgba(255, 140, 47, 0.1) 75%, transparent 85%),
+                linear-gradient(-45deg, transparent 65%, rgba(255, 255, 255, 0.05) 75%, transparent 85%);
+            animation: shine 8s ease-in-out infinite;
+            z-index: 1;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-            }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 140, 47, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(34, 66, 137, 0.1) 0%, transparent 30%);
+            z-index: 1;
+        }
 
-            50% {
-                transform: translateY(-10px) translateX(10px);
-            }
-
-            100% {
-                transform: translateY(0) translateX(0);
-            }
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
         }
 
         .page-hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .page-hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: var(--line-height-loose);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
             max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            margin-left: auto;
+            margin-right: auto;
         }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 2rem;
+            animation: floatRandom 15s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 70%; left: 10%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { top: 30%; right: 5%; animation-delay: 4s; }
+        .floating-element:nth-child(4) { top: 80%; right: 15%; animation-delay: 6s; }
+        .floating-element:nth-child(5) { top: 50%; left: 15%; animation-delay: 8s; }
+        .floating-element:nth-child(6) { top: 20%; right: 20%; animation-delay: 10s; }
+
+        @keyframes floatRandom {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(20px, -15px) rotate(5deg) scale(1.1);
+            }
+            50% {
+                transform: translate(-15px, 10px) rotate(-3deg) scale(0.9);
+            }
+            75% {
+                transform: translate(10px, 20px) rotate(2deg) scale(1.05);
+            }
+        }
+
+        @keyframes shine {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== ESTILOS ESPECÍFICOS PARA PÁGINA SOBRE ===== */
 
         /* Seção de Conteúdo Principal */
         .content-section {
@@ -419,17 +504,32 @@
         }
 
         /* Responsividade */
+        @media (max-width: 1024px) {
+            .page-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .page-hero {
-                padding: 3rem 0;
+                padding: 4rem 0 3rem;
+                min-height: 50vh;
             }
 
             .page-hero h1 {
-                font-size: 2.3rem;
+                font-size: 2.5rem;
             }
 
             .page-hero p {
                 font-size: 1.1rem;
+            }
+
+            .floating-element {
+                font-size: 1.5rem;
             }
 
             .content-grid {
@@ -457,8 +557,20 @@
         }
 
         @media (max-width: 480px) {
+            .page-hero {
+                padding: 3rem 0 2rem;
+            }
+
             .page-hero h1 {
                 font-size: 2rem;
+            }
+
+            .page-hero p {
+                font-size: 1rem;
+            }
+
+            .floating-element {
+                display: none;
             }
 
             .content-card {
@@ -503,6 +615,7 @@
             </h1>
             <nav class="main-nav">
                 <ul>
+                    <li><a href="../index.html">Início</a></li>
                     <li><a href="dia-a-dia.html">No dia a dia</a></li>
                     <li><a href="../jogos/jogos.html">Jogos</a></li>
                     <li><a href="matematica-ti.html">Matemática na TI</a></li>
@@ -514,6 +627,14 @@
 
     <main>
         <section class="page-hero">
+            <div class="floating-elements">
+                <div class="floating-element">π</div>
+                <div class="floating-element">∑</div>
+                <div class="floating-element">∞</div>
+                <div class="floating-element">∫</div>
+                <div class="floating-element">√</div>
+                <div class="floating-element">θ</div>
+            </div>
             <div class="container">
                 <h1>Sobre o Projeto</h1>
                 <p>Conheça mais sobre o π Senática e nossa missão de conectar a matemática com o mundo real</p>

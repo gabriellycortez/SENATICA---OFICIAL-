@@ -8,6 +8,96 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ===== ESTILOS PARA PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #1a4a8d 0%, #2a5ca0 50%, #3a6cb3 100%);
+            color: white;
+            padding: 7rem 0 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-timeline-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .timeline-icon-hero {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 2.5rem;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .timeline-icon-hero:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+        .timeline-icon-hero:nth-child(2) { top: 65%; left: 3%; animation-delay: 1.5s; }
+        .timeline-icon-hero:nth-child(3) { top: 35%; left: 88%; animation-delay: 3s; }
+        .timeline-icon-hero:nth-child(4) { top: 75%; left: 92%; animation-delay: 4.5s; }
+        .timeline-icon-hero:nth-child(5) { top: 25%; left: 75%; animation-delay: 6s; }
+        .timeline-icon-hero:nth-child(6) { top: 85%; left: 65%; animation-delay: 7.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-25px) rotate(5deg);
+            }
+        }
+
         /* ===== ESTILOS PARA LINHA DO TEMPO ===== */
         .timeline-section {
             padding: 5rem 0;
@@ -25,10 +115,11 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
+            width: 6px;
             height: 100%;
             background: linear-gradient(to bottom, var(--primary-blue), var(--accent-orange));
-            border-radius: 2px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(34, 66, 137, 0.3);
         }
 
         .timeline-item {
@@ -37,6 +128,14 @@
             align-items: center;
             margin-bottom: 4rem;
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .timeline-item:nth-child(odd) {
@@ -51,44 +150,69 @@
             flex: 1;
             text-align: center;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--primary-blue);
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-date::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: var(--background-white);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(34, 66, 137, 0.1);
+            z-index: -1;
         }
 
         .timeline-content {
             flex: 2;
             background: var(--background-white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(34, 66, 137, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(34, 66, 137, 0.1);
             position: relative;
             max-width: 500px;
+            border-left: 5px solid var(--accent-orange);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(34, 66, 137, 0.15);
         }
 
         .timeline-content::before {
             content: '';
             position: absolute;
             top: 50%;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background: var(--accent-orange);
             border-radius: 50%;
             transform: translateY(-50%);
+            border: 5px solid var(--background-white);
+            box-shadow: 0 0 0 3px var(--accent-orange);
         }
 
         .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -30px;
+            right: -37px;
         }
 
         .timeline-item:nth-child(even) .timeline-content::before {
-            left: -30px;
+            left: -37px;
         }
 
         .timeline-content h2 {
             color: var(--primary-blue);
             margin-bottom: 1rem;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
 
         .timeline-content p {
@@ -98,12 +222,51 @@
         }
 
         .timeline-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent-orange);
             margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* ===== MELHORIAS DE RESPONSIVIDADE ===== */
+        @media (max-width: 1024px) {
+            .timeline-content {
+                max-width: 450px;
+                padding: 2rem;
+            }
+            
+            .timeline-date {
+                font-size: 1.2rem;
+            }
+            
+            .timeline-date::before {
+                width: 70px;
+                height: 70px;
+            }
         }
 
         @media (max-width: 768px) {
+            .page-hero {
+                padding: 5rem 0 3rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+            
+            .timeline-icon-hero {
+                font-size: 2rem;
+            }
+            
+            .timeline-section {
+                padding: 3rem 0;
+            }
+            
             .timeline::before {
                 left: 30px;
             }
@@ -111,24 +274,128 @@
             .timeline-item {
                 flex-direction: row !important;
                 align-items: flex-start;
-                margin-bottom: 2rem;
+                margin-bottom: 3rem;
             }
 
             .timeline-date {
-                flex: 0 0 80px;
+                flex: 0 0 100px;
                 text-align: left;
                 padding: 0;
-                font-size: 1rem;
+                font-size: 1.1rem;
+                margin-right: 1rem;
+            }
+            
+            .timeline-date::before {
+                width: 60px;
+                height: 60px;
+                left: 0;
+                transform: translate(0, -50%);
             }
 
             .timeline-content {
                 flex: 1;
                 margin-left: 2rem;
+                max-width: none;
             }
 
             .timeline-content::before {
-                left: -30px !important;
+                left: -37px !important;
                 right: auto !important;
+            }
+            
+            .timeline-icon {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero {
+                padding: 4rem 0 2.5rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .page-hero p {
+                font-size: 1rem;
+            }
+            
+            .timeline-icon-hero {
+                display: none;
+            }
+            
+            .timeline-section {
+                padding: 2rem 0;
+            }
+            
+            .timeline::before {
+                left: 20px;
+                width: 4px;
+            }
+            
+            .timeline-item {
+                margin-bottom: 2rem;
+            }
+            
+            .timeline-date {
+                flex: 0 0 80px;
+                font-size: 1rem;
+            }
+            
+            .timeline-date::before {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+                margin-left: 1.5rem;
+                border-left-width: 4px;
+            }
+            
+            .timeline-content::before {
+                width: 20px;
+                height: 20px;
+                left: -30px !important;
+                border-width: 4px;
+            }
+            
+            .timeline-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .timeline-content p {
+                font-size: 0.95rem;
+            }
+            
+            .timeline-icon {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .timeline-date {
+                flex: 0 0 70px;
+                font-size: 0.9rem;
+            }
+            
+            .timeline-date::before {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .timeline-content {
+                padding: 1.2rem;
+                margin-left: 1.2rem;
+            }
+            
+            .timeline-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .timeline-content p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -143,10 +410,10 @@
             </h1>
             <nav class="main-nav">
                 <ul>
+                    <li><a href="../index.html">Início</a></li>
                     <li><a href="dia-a-dia.html">No dia a dia</a></li>
                     <li><a href="../jogos/jogos.html">Jogos</a></li>
                     <li><a href="matematica-ti.html">Matemática na TI</a></li>
-                    <li><a href="linha-tempo.html" class="active">Linha do Tempo</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                 </ul>
             </nav>
@@ -155,6 +422,14 @@
 
     <main>
         <section class="page-hero">
+            <div class="hero-timeline-icons">
+                <div class="timeline-icon-hero"><i class="fas fa-infinity"></i></div>
+                <div class="timeline-icon-hero"><i class="fas fa-calculator"></i></div>
+                <div class="timeline-icon-hero"><i class="fas fa-ruler-combined"></i></div>
+                <div class="timeline-icon-hero"><i class="fas fa-shapes"></i></div>
+                <div class="timeline-icon-hero"><i class="fas fa-chart-line"></i></div>
+                <div class="timeline-icon-hero"><i class="fas fa-brain"></i></div>
+            </div>
             <div class="container">
                 <h1>Linha do Tempo Matemática</h1>
                 <p>Uma jornada pelas descobertas que moldaram o mundo</p>
@@ -257,5 +532,27 @@
             <p>Feito por alunos do Senac - Feira de Ciências 2025</p>
         </div>
     </footer>
+
+    <script>
+        // Animação de entrada para os itens da linha do tempo
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
 </body>
 </html>
